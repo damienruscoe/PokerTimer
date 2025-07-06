@@ -135,6 +135,7 @@
                     android:layout_height="wrap_content"
                     android:text="Previous"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
                     android:background="@android:color/transparent"
                     android:textColor="@color/colorSecondary" />
                 <Button
@@ -143,6 +144,7 @@
                     android:layout_height="wrap_content"
                     android:text="Play"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
                     android:background="@color/colorSecondary"
                     android:textColor="@color/colorOnSecondary" />
                 <Button

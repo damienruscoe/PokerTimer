@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "it.undo.druscoe.pokertimer"
-        minSdk = 16
+        minSdk = 18
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
