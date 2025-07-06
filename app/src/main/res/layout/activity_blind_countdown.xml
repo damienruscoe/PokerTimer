@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@color/colorBackground">
+
+    <!-- Top bar with dark/light toggle button and settings button -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/settings_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⚙"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorOnSurface"/>
+        <Button
+            android:id="@+id/theme_toggle_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="☾"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorOnSurface"/>
+    </RelativeLayout>
+
+    <!-- Timer Card using LinearLayout instead of MaterialCardView -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@color/colorSurface"
+        android:padding="32dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+            <!-- Timer with reflection effect -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp">
+
+                <!-- Main timer text -->
+                <TextView
+                    android:id="@+id/countdown_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="05:00"
+                    android:textSize="96sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorOnSurface"
+                    android:shadowColor="#40000000"
+                    android:shadowDx="0"
+                    android:shadowDy="2"
+                    android:shadowRadius="4" />
+
+                <!-- Reflection effect below the timer (positioned with negative margin) -->
+                <TextView
+                    android:id="@+id/countdown_reflection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="05:00"
+                    android:textSize="96sp"
+                    android:textStyle="bold"
+                    android:textColor="#15FFFFFF"
+                    android:alpha="0.4"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="-96dp" />
+
+            </FrameLayout>
+
+            <!-- Blinds display with custom formatting -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blinds "
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/big_blind_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/"
+                    android:textSize="36sp"
+                    android:textColor="@color/colorSecondary" />
+
+                <TextView
+                    android:id="@+id/small_blind_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.7"
+                    android:gravity="bottom"
+                    android:text="50"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="28sp" />
+
+            </LinearLayout>
+
+            <!-- Previous, Play/Pause, Next buttons -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/previous_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Previous"
+                    android:layout_marginEnd="16dp"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/colorSecondary" />
+                <Button
+                    android:id="@+id/play_pause_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Play"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/colorSecondary"
+                    android:textColor="@color/colorOnSecondary" />
+                <Button
+                    android:id="@+id/next_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/colorSecondary" />
+            </LinearLayout>
+        </LinearLayout>
+
+    <!-- Time adjustment buttons -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/minus_one_minute_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-1m"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorSecondary" />
+        <Button
+            android:id="@+id/minus_thirty_seconds_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-30s"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorSecondary" />
+        <Button
+            android:id="@+id/plus_thirty_seconds_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+30s"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorSecondary" />
+        <Button
+            android:id="@+id/plus_one_minute_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+1m"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorSecondary" />
+    </LinearLayout>
+
+</LinearLayout> 

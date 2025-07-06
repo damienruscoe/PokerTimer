@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <EditText
+        android:id="@+id/edit_big_blind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Big Blind"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edit_small_blind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Small Blind"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edit_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Duration (minutes)"
+        android:inputType="number" />
+
+</LinearLayout> 

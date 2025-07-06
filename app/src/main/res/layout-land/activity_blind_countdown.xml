@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/colorBackground"
+    android:padding="16dp">
+
+    <!-- Timer Card (left side) -->
+    <LinearLayout
+        android:id="@+id/timer_card"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.45"
+        android:layout_marginEnd="16dp"
+        android:background="@color/colorSurface"
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Timer with reflection effect -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <!-- Main timer text -->
+            <TextView
+                android:id="@+id/countdown_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="05:00"
+                android:textSize="64sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorOnSurface"
+                android:shadowColor="#40000000"
+                android:shadowDx="0"
+                android:shadowDy="2"
+                android:shadowRadius="4" />
+
+            <!-- Reflection effect below the timer (positioned with negative margin) -->
+            <TextView
+                android:id="@+id/countdown_reflection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="05:00"
+                android:textSize="64sp"
+                android:textStyle="bold"
+                android:textColor="#15FFFFFF"
+                android:alpha="0.4"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="-64dp" />
+
+        </FrameLayout>
+
+        <!-- Blinds display with custom formatting -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blinds "
+                android:textSize="22sp"
+                android:textColor="@color/colorSecondary" />
+
+            <TextView
+                android:id="@+id/big_blind_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:textSize="22sp"
+                android:textColor="@color/colorSecondary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:textSize="22sp"
+                android:textColor="@color/colorSecondary" />
+
+            <TextView
+                android:id="@+id/small_blind_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50"
+                android:textSize="18sp"
+                android:alpha="0.7"
+                android:textColor="@color/colorSecondary" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Controls Group (right side) -->
+    <LinearLayout
+        android:id="@+id/controls_group"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.55"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Top row: Settings and Theme buttons -->
+        <LinearLayout
+            android:id="@+id/top_buttons_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="32dp">
+
+            <Button
+                android:id="@+id/settings_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚙"
+                android:layout_marginEnd="16dp"
+                android:background="@android:color/transparent"
+                android:textColor="@color/colorOnSurface"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/theme_toggle_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="☾"
+                android:background="@android:color/transparent"
+                android:textColor="@color/colorOnSurface"/>
+        </LinearLayout>
+
+        <!-- Previous, Play/Pause, Next buttons -->
+        <LinearLayout
+            android:id="@+id/prev_play_next_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+            <Button
+                android:id="@+id/previous_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Previous"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:textColor="@color/colorSecondary" />
+            <Button
+                android:id="@+id/play_pause_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Play"
+                android:layout_marginEnd="8dp"
+                android:background="@color/colorSecondary"
+                android:textColor="@color/colorOnSecondary" />
+            <Button
+                android:id="@+id/next_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:background="@android:color/transparent"
+                android:textColor="@color/colorSecondary" />
+        </LinearLayout>
+
+        <!-- Time adjustment buttons -->
+        <LinearLayout
+            android:id="@+id/time_adjust_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <Button
+                android:id="@+id/minus_one_minute_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-1m"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:textColor="@color/colorSecondary" />
+            <Button
+                android:id="@+id/minus_thirty_seconds_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-30s"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:textColor="@color/colorSecondary" />
+            <Button
+                android:id="@+id/plus_thirty_seconds_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+30s"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:textColor="@color/colorSecondary" />
+            <Button
+                android:id="@+id/plus_one_minute_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+1m"
+                android:background="@android:color/transparent"
+                android:textColor="@color/colorSecondary" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

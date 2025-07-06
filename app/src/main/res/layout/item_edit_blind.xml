@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- First row: Edit fields with spacer -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_big_blind"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Big Blind"
+            android:inputType="number"
+            android:textColor="@color/colorOnSurface"
+            android:textColorHint="@color/colorSecondary" />
+
+        <EditText
+            android:id="@+id/edit_small_blind"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Small Blind"
+            android:inputType="number"
+            android:textColor="@color/colorOnSurface"
+            android:textColorHint="@color/colorSecondary" />
+
+        <EditText
+            android:id="@+id/edit_duration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Duration (min)"
+            android:inputType="number"
+            android:textColor="@color/colorOnSurface"
+            android:textColorHint="@color/colorSecondary" />
+
+        <!-- Spacer to align with delete button in accepted values -->
+        <Space
+            android:layout_width="48dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <!-- Second row: Add button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/add_blind_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add" />
+
+    </LinearLayout>
+
+</LinearLayout> 
