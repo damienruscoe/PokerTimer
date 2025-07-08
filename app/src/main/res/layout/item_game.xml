@@ -31,4 +31,13 @@
         android:layout_height="wrap_content"
         android:text="@string/play_game" />
 
+    <Button
+        android:id="@+id/delete_game_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_game"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/red"
+        android:background="@android:color/transparent" />
+
 </LinearLayout> 

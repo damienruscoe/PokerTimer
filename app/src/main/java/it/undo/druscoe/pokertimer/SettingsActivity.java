@@ -157,6 +157,12 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                 }
                 editor.putString(KEY_BLIND_LEVELS, arr.toString());
+                // Return result to GamesListActivity if launched for result
+                Intent result = new Intent();
+                result.putExtra("EXTRA_BLIND_LEVELS_JSON", arr.toString());
+                int gameIdx = getIntent().getIntExtra("EXTRA_GAME_INDEX", -1);
+                result.putExtra("EXTRA_GAME_INDEX", gameIdx);
+                setResult(RESULT_OK, result);
             }
             editor.apply();
         } catch (Exception e) {
