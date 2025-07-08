@@ -1,0 +1,145 @@
+name: Update Debug Builds Index
+
+on:
+  workflow_run:
+    workflows: ["Android Debug Build"]  # Name of your debug build workflow
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        ref: gh-pages
+        
+    - name: Create gh-pages branch if it doesn't exist
+      run: |
+        git checkout --orphan gh-pages 2>/dev/null || git checkout gh-pages
+        
+    - name: Get workflow runs
+      id: get-release-runs
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const runs = await github.rest.actions.listWorkflowRuns({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: 'android-release.yml',
+            status: 'success',
+            per_page: 20
+          });
+          
+          const artifacts = [];
+          for (const run of runs.data.workflow_runs) {
+            const runArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: run.id
+            });
+            
+            for (const artifact of runArtifacts.data.artifacts) {
+              if (artifact.name.includes('debug')) {
+                artifacts.push({
+                  name: artifact.name,
+                  download_url: artifact.archive_download_url,
+                  created_at: artifact.created_at,
+                  run_number: run.run_number,
+                  commit_sha: run.head_sha.substring(0, 7),
+                  branch: run.head_branch,
+                });
+              }
+            }
+          }
+          
+          return artifacts;
+        
+    - name: Get workflow runs
+      id: get-debug-runs
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const runs = await github.rest.actions.listWorkflowRuns({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: 'android-debug.yml',
+            status: 'success',
+            per_page: 20
+          });
+          
+          const artifacts = [];
+          for (const run of runs.data.workflow_runs) {
+            const runArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: run.id
+            });
+            
+            for (const artifact of runArtifacts.data.artifacts) {
+              if (artifact.name.includes('debug')) {
+                artifacts.push({
+                  name: artifact.name,
+                  download_url: artifact.archive_download_url,
+                  created_at: artifact.created_at,
+                  run_number: run.run_number,
+                  commit_sha: run.head_sha.substring(0, 7),
+                  branch: run.head_branch,
+                });
+              }
+            }
+          }
+          
+          return artifacts;
+          
+    - name: Generate HTML index
+      run: |
+        cat > debug_index.html << 'EOF'
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Debug Builds</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 40px; }
+                table { border-collapse: collapse; width: 100%; }
+                th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+                th { background-color: #f2f2f2; }
+                .download-btn { background-color: #4CAF50; color: white; padding: 8px 16px; text-decoration: none; border-radius: 4px; }
+                .download-btn:hover { background-color: #45a049; }
+            </style>
+        </head>
+        <body>
+            <h1>Debug Builds</h1>
+            <p>Latest debug APK builds from CI/CD pipeline</p>
+            <table>
+                <tr>
+                    <th>Build</th>
+                    <th>Commit</th>
+                    <th>Branch</th>
+                    <th>Date</th>
+                    <th>Download</th>
+                </tr>
+        EOF
+        
+        echo '${{ steps.get-release-runs.outputs.result }}' | jq -r '.[] | "<tr><td>#\(.run_number)</td><td>\(.commit_sha)</td><td>\(.branch)</td><td>\(.created_at | split("T")[0])</td><td><a href=\"\(.download_url)\" class=\"download-btn\">Download APK</a></td></tr>"' >> debug_index.html
+        echo '${{ steps.get-debug-runs.outputs.result }}' | jq -r '.[] | "<tr><td>#\(.run_number)</td><td>\(.commit_sha)</td><td>\(.branch)</td><td>\(.created_at | split("T")[0])</td><td><a href=\"\(.download_url)\" class=\"download-btn\">Download APK</a></td></tr>"' >> debug_index.html
+        
+        cat >> debug_index.html << 'EOF'
+            </table>
+            <p><small>Last updated: $(date)</small></p>
+        </body>
+        </html>
+        EOF
+        
+    - name: Deploy to GitHub Pages
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add debug_index.html
+        git commit -m "Update debug builds index" || exit 0
+        git push origin gh-pages
