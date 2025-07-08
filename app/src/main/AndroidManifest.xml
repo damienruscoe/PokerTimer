@@ -14,15 +14,18 @@
         android:hardwareAccelerated="true"
         tools:targetApi="21">
 
-        <activity android:name=".BlindCountdownActivity"
+        <activity android:name=".GamesListActivity"
                   android:exported="true"
-                  android:configChanges="orientation|screenSize|keyboardHidden"
-                  android:screenOrientation="portrait">
+                  android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".BlindCountdownActivity"
+                  android:configChanges="orientation|screenSize|keyboardHidden"
+                  android:screenOrientation="portrait" />
 
         <activity android:name=".SettingsActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden" />

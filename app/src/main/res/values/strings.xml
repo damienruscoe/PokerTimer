@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Poker Time</string>
+    <string name="games_list_title">Games</string>
+    <string name="edit_game">Edit</string>
+    <string name="play_game">Play</string>
+    <string name="game_name_label">Game Name</string>
+    <string name="add_game">Add Game</string>
+    <string name="delete_game">Delete</string>
 </resources>
