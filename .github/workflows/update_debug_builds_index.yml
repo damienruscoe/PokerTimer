@@ -2,7 +2,7 @@ name: Update Debug Builds Index
 
 on:
   workflow_run:
-    workflows: ["Android Debug Build"]  # Name of your debug build workflow
+    workflows: ["Publish Debug Build", "Publish Release Build"]
     types:
       - completed
   workflow_dispatch:
@@ -45,7 +45,7 @@ jobs:
             });
             
             for (const artifact of runArtifacts.data.artifacts) {
-              if (artifact.name.includes('debug')) {
+              if (artifact.name.includes('release')) {
                 artifacts.push({
                   name: artifact.name,
                   download_url: artifact.archive_download_url,
