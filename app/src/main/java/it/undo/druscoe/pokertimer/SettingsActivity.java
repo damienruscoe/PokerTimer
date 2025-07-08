@@ -24,6 +24,7 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import it.undo.druscoe.pokertimer.BlindLevelListView;
+import android.content.Intent;
 
 public class SettingsActivity extends AppCompatActivity {
     private Button addLevelButton;
@@ -79,14 +80,22 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void loadSettings() {
         try {
-            SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            String json = null;
+            // Check for Intent extra first
+            Intent intent = getIntent();
+            if (intent != null && intent.hasExtra("EXTRA_BLIND_LEVELS_JSON")) {
+                json = intent.getStringExtra("EXTRA_BLIND_LEVELS_JSON");
+            } else {
+                SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+                json = prefs.getString(KEY_BLIND_LEVELS, null);
+            }
             // Load sound settings
+            SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
             boolean warningEnabled = prefs.getBoolean(KEY_WARNING_SOUND, true);
             boolean endEnabled = prefs.getBoolean(KEY_END_SOUND, true);
             if (warningSoundSwitch != null) warningSoundSwitch.setChecked(warningEnabled);
             if (endSoundSwitch != null) endSoundSwitch.setChecked(endEnabled);
             // Load blind levels
-            String json = prefs.getString(KEY_BLIND_LEVELS, null);
             List<BlindLevel> loaded = new ArrayList<>();
             if (json != null) {
                 try {

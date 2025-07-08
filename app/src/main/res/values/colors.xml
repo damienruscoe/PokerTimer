@@ -19,4 +19,12 @@
     <color name="purple_200">#BB86FC</color>
     <color name="purple_700">#3700B3</color>
     <color name="teal_200">#03DAC5</color>
+    <color name="game_card_1">#FFB74D</color>
+    <color name="game_card_2">#4FC3F7</color>
+    <color name="game_card_3">#81C784</color>
+    <color name="game_card_4">#BA68C8</color>
+    <color name="game_card_5">#FFD54F</color>
+    <color name="game_card_6">#A1887F</color>
+    <color name="game_card_7">#90A4AE</color>
+    <color name="game_card_8">#E57373</color>
 </resources>
