@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - 'v*'  # Trigger on version tags like v1.0.0
+    branches:
+      - 'master'
+      - 'main'
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
